@@ -6,14 +6,41 @@ import { Book } from "./models/bookModel.js";
 const app = express();
 app.use(express.json());
 
-app.get("/", (request, response) => {
-  console.log(request)
+// GET root
+app.get("/", (_request, response) => {
   return response.status(200).send("Welcome to MERN")
 });
 
+// GET "/books" (Show all Books)
+app.get("/books", async(_request, response) => {
+  try {
+    const books = await Book.find({});
+
+    return response.status(200).json({
+      count: books.length,
+      data: books
+    });
+  } catch (error) {
+    console.log(error.message)
+    response.status(500).send({message: error.message})
+  }
+});
+
+// GET "/books/:id" (Show single Book)
+app.get("/books/:id", async(request, response) => {
+  try {
+    const { id } = request.params;
+    const book = await Book.findById(id);
+
+    return response.status(200).json(book);
+  } catch (error) {
+    console.log(error.message)
+    response.status(500).send({message: error.message})
+  }
+});
+
+// POST "/books" (Create a Book)
 app.post("/books", async (request, response) => {
-  console.log("POST Book")
-  console.log(request.body)
   try {
     if (!request.body.title || !request.body.author || !request.body.publishYear) {
       return response.status(400).send({
@@ -32,7 +59,8 @@ app.post("/books", async (request, response) => {
     return response.status(201).send(book)
     
   } catch (error) {
-    
+    console.log(error.message);
+    response.status(500).send({message: error.message})
   }
 });
 
@@ -44,5 +72,5 @@ mongoose.connect(DB_URL)
     });
   })
   .catch((error) => {
-    console.log(error)
+    console.log(error);
   });
