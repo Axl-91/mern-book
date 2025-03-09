@@ -7,20 +7,7 @@ import booksRoute from "./routes/booksRoute.js"
 const app = express();
 
 app.use(express.json());
-app.use(cors(
-  {
-    origin: "http://localhost",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-  }
-));
-
-
-// GET root
-app.get("/", (_request, response) => {
-  return response.status(200).send("Welcome to MERN")
-});
-
+app.use(cors());
 app.use("/books", booksRoute);
 
 mongoose.connect(DB_URL)
