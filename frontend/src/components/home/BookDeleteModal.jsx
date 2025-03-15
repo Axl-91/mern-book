@@ -9,7 +9,7 @@ const BookDeleteModal = ({book, onClose}) => {
       onClick={onClose}>
         <div
           onClick={(event) => {event.stopPropagation()}}
-          className="w-[600px] max-w-full h-[250px] bg-white rounded-xl p-4 flex flex-col relative">
+          className=" border-2 border-sky-500 w-[600px] max-w-full h-[250px] bg-white rounded-xl p-4 flex flex-col relative">
 
           <AiOutlineClose className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer" onClick={onClose} />
 

@@ -31,7 +31,7 @@ const Home = () => {
         <button className="bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg cursor-pointer" onClick={() => setShowType("card")}> Card </button>
       </div>
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl my-8">Books List</h1>
+      <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-6xl"><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-600">Books</span></h1>
         <Link to="/books/create">
           <MdOutlineAddBox className="text-sky-800 text-4xl" />
         </Link>
